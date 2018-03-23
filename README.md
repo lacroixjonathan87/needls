@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lacroixjonathan87/needls.svg?branch=master)](https://travis-ci.org/lacroixjonathan87/needls)
+
 # PHP Coding Challenge Instructions
 
 Write some code that will solve the following:
