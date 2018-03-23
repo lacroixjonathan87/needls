@@ -9,7 +9,7 @@ class StateUtils {
 
     /**
      * @param SomeObject $object
-     * @param string $state State to look after
+     * @param string $state State to look after (Default: "RUNNING")
      * @param int $now Used by test
      *
      * @return int
@@ -17,7 +17,7 @@ class StateUtils {
      * @throws InvalidArgumentException StopDate is smaller than startDate
      * @throws InvalidArgumentException Missing log record
      */
-	public static function calculateTimeInState($object, $state, $now=null) {
+	public static function calculateTimeInState($object, $state=self::STATE_RUNNING, $now=null) {
 
 	    if(is_null($now)){
 	        $now = time();
