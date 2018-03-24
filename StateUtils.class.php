@@ -17,23 +17,23 @@ class StateUtils {
      * @throws InvalidArgumentException StopDate is smaller than startDate
      * @throws InvalidArgumentException Missing log record
      */
-	public static function calculateTimeInState($object, $state=self::STATE_RUNNING, $now=null) {
+    public static function calculateTimeInState($object, $state=self::STATE_RUNNING, $now=null) {
 
-	    if(is_null($now)){
-	        $now = time();
+        if(is_null($now)){
+            $now = time();
         }
 
-	    $startDate = $object->getStartDate();
-	    if(is_null($startDate)){
-	        $startDate = PHP_INT_MIN; // So can work with logs from before 1970-01-01
+        $startDate = $object->getStartDate();
+        if(is_null($startDate)){
+            $startDate = PHP_INT_MIN; // So can work with logs from before 1970-01-01
         }
 
-	    $stopDate = $object->getStopDate();
-	    if(is_null($stopDate)){
-	        $stopDate = $now;
+        $stopDate = $object->getStopDate();
+        if(is_null($stopDate)){
+            $stopDate = $now;
         }
 
-	    if($stopDate < $startDate){
+        if($stopDate < $startDate){
             //throw new InvalidArgumentException('StopDate is smaller than startDate');
             return 0;
         }
@@ -43,7 +43,7 @@ class StateUtils {
         $currentState = null;
 
         $sortedStatusLog = self::sortStatusLog($object->getStatusLog());
-	    foreach($sortedStatusLog as $log){
+        foreach($sortedStatusLog as $log){
             $date = $log['date'];
             $oldState = $log['oldState'];
             $newState = $log['newState'];
@@ -66,7 +66,7 @@ class StateUtils {
 
         return $timeInState;
 
-	}
+    }
 
     /**
      * Sort statusLog by date
@@ -93,7 +93,7 @@ class StateUtils {
      *
      * @return int
      */
-	private static function calculateTime($beginDate, $endDate, $startDate, $stopDate) {
+    private static function calculateTime($beginDate, $endDate, $startDate, $stopDate) {
 
         $beginDate = max($beginDate, $startDate);
         $endDate = min($endDate, $stopDate);
